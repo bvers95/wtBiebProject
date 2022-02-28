@@ -5,3 +5,7 @@ nog een regel
 ...
 ...
 <>
+
+Nu ga ik deze bewerken vanaf GitHub:
+Ff kijken of dit lokaal ook binnenkomt dan!
+<>
