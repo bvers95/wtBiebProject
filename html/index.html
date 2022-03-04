@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <script>
+
+        async function postData(urlBook, urlAuthor, dataBook, dataAuthor) {
+            await fetch(urlBook, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(dataBook)
+            }).then((bookReturn) => {
+                fetch(urlAuthor, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                   referrerPolicy: 'no-referrer',
+                   body: JSON.stringify(dataAuthor)
+                });
+            });
+        };
+
+        function addBookAuthor() {
+            const bookExample = {"isbn":9780470087169, "title":"Java For Dummies (Java for Dummies)", "language":"eng", "description":"Start learning Java.", "isPhysical": false}
+            const authorExample = {"name":"Barry Burd", "description":"Barry like to write about Java."}
+
+            postData("http://localhost:8080/api/book/add", "http://localhost:8080/api/book/"+bookExample["isbn"]+"/author", bookExample, authorExample);
+        };
+    </script>
+</head>
+<body>
+    <button onclick="addBookAuthor()" type="button">Add Book & Author</button>
+    <div>Check de return op: http://localhost:8080/api/books</div>
+</body>
+</html>

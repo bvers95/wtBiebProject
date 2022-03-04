@@ -23,8 +23,9 @@ public class BookController {
 	}
 	
 	@PostMapping("/api/book/add")
-	public void createBook(@RequestBody Book book) {
+	public Book createBook(@RequestBody Book book) {
 		bookService.addNewBook(book);
+		return book;
 	}
 	
 	@PostMapping(path = "/api/book/{isbn}/author")
