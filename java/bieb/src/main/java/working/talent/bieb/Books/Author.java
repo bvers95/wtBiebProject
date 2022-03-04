@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Author {
 	
@@ -15,6 +17,9 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long authorId;
 
+	// Fix loop
+	@JsonIgnore
+	// We need to map the author key
 	@ManyToMany(mappedBy = "author")
 	private Set<Book> book;
 	

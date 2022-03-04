@@ -16,6 +16,9 @@ public class Book {
 
 	private String title;
 	
+	/* As the book entity is our main entity we join the 
+	tables from here and we name the table and columns of
+	the new junction table that is created for us */
 	@ManyToMany
 	@JoinTable(
 		name = "bookAuthor", 
