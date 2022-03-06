@@ -1,11 +1,13 @@
 package working.talent.bieb;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 public class OpenLibraryController {
 	
 	@RequestMapping(value = "/library/{search}", produces = "application/json")

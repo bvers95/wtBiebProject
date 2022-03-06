@@ -4,39 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Add Book</title>
     <script>
+        function addBook(details) {
+            document.getElementById("add").innerHTML = "Checking...";
+            fetch('https://openlibrary.org'+details["key"]+'.json')
+            .then(response => response.json())
+            .then(book => {
+                fetch('https://openlibrary.org/authors/'+details["author_key"][0]+'.json')
+                .then(response => response.json())
+                .then(author => {
+                    document.getElementById("add").innerHTML = "Results:";
+                    
+                    console.log(book);
+                    console.log(author);
 
-        async function postData(urlBook, urlAuthor, dataBook, dataAuthor) {
-            await fetch(urlBook, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(dataBook)
-            }).then((bookReturn) => {
-                fetch(urlAuthor, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                   referrerPolicy: 'no-referrer',
-                   body: JSON.stringify(dataAuthor)
+                    const bookName = book["title"];
+                    const bookDescription = book["description"];
+
+                    console.log(bookName, bookDescription);
                 });
             });
         };
-
-        function addBookAuthor() {
-            const bookExample = {"isbn":9780470087169, "title":"Java For Dummies (Java for Dummies)", "language":"eng", "description":"Start learning Java.", "isPhysical": false}
-            const authorExample = {"name":"Barry Burd", "description":"Barry like to write about Java."}
-
-            postData("http://localhost:8080/api/book/add", "http://localhost:8080/api/book/"+bookExample["isbn"]+"/author", bookExample, authorExample);
+        function searchForBook() {
+            document.getElementById("feedback").innerHTML = "Searching...";
+            const bookQuery = document.getElementById("book-search").value;
+            document.getElementById("results").innerHTML = "";
+            document.getElementById("add").innerHTML = "";
+            if (bookQuery) {
+                fetch('http://localhost:8080/library/'+bookQuery)
+                .then(response => response.json())
+                .then(data => {
+                    if (!('error' in data)) {
+                        if (data["numFound"] > 0) {
+                            const filteredResults = Object.entries(data["docs"]).filter(entry => {
+                                if (('isbn' in entry[1])) {
+                                    return entry;
+                                };
+                            });
+                            if (filteredResults.length > 0) {
+                                document.getElementById("feedback").innerHTML = filteredResults.length+" Book(s) Found. Displaying Top Results.";
+                                const slicedArray = filteredResults.slice(0, 5);
+                                slicedArray.forEach(book => {
+                                    const bookInfo = book[1];
+                                    let resultsDiv = document.getElementById("results");
+                                    resultsDiv.innerHTML += `<div class="mb-3 mt-3">
+                                        <button onclick="addBook(${JSON.stringify(bookInfo).split('"').join("&quot;")})" class="btn btn-primary" type="button">Check</button>
+                                        <span class="ml-3 font-weight-bold">[ISBN: ${bookInfo["isbn"][0]}]</span> 
+                                        '${bookInfo["title"]}' by ${bookInfo["author_name"][0]}.
+                                    </div>`;
+                                });
+                            } else {
+                                document.getElementById("feedback").innerHTML = "No Books Found";
+                            };
+                        } else {
+                            document.getElementById("feedback").innerHTML = "No Entries Found";
+                        };
+                    } else {
+                        document.getElementById("feedback").innerHTML = "Request Error";
+                    };
+                });
+            } else {
+                document.getElementById("feedback").innerHTML = "Empty Request";
+            };
         };
     </script>
 </head>
 <body>
-    <button onclick="addBookAuthor()" type="button">Add Book & Author</button>
-    <div>Check de return op: http://localhost:8080/api/books</div>
+    <div class="container">
+        <div class="input-group mb-3 mt-5">
+            <input id="book-search" type="text" class="form-control" placeholder="Title, Author or ISBN">
+            <div class="input-group-append">
+                <button onclick="searchForBook()" class="btn btn-primary" type="button">Search For Book</button>
+            </div>
+        </div>
+        <div id="feedback" class="mb-4 mt-2 text-center"></div>
+        <div id="results" class="mb-2 mt-2"></div>
+        <div id="add" class="mb-2 mt-2 text-center"></div>
+    </div>
 </body>
 </html>
