@@ -1,4 +1,4 @@
-package working.talent.bieb.Security;
+package working.talent.bieb;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +12,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity security) throws Exception
     {
+    	// Disable protection for post requests
+    	security.cors().and().csrf().disable();
+    	// Disable default login screen
     	security.httpBasic().disable();
     }
     
