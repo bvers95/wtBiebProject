@@ -1,4 +1,4 @@
-package working.talent.bieb.model;
+package nl.workingtalent.bieb.model;
 
 import java.util.List;
 

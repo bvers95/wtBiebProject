@@ -1,4 +1,4 @@
-package working.talent.bieb;
+package nl.workingtalent.bieb;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

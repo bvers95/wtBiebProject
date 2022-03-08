@@ -1,12 +1,12 @@
-package working.talent.bieb.repository;
+package nl.workingtalent.bieb.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoanEventService {
-
+public class AccountService {
+	
 	@Autowired
-	private LoanEventRepository LoanEventRepo;
+	private AccountRepository accountRepo;
 	
 }

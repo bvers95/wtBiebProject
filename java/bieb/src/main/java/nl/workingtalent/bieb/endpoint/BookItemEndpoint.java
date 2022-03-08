@@ -1,4 +1,4 @@
-package working.talent.bieb.endpoint;
+package nl.workingtalent.bieb.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import working.talent.bieb.model.Book;
-import working.talent.bieb.model.BookItem;
-import working.talent.bieb.repository.BookItemService;
+import nl.workingtalent.bieb.model.Book;
+import nl.workingtalent.bieb.model.BookItem;
+import nl.workingtalent.bieb.repository.BookItemService;
 
 @RestController
 @CrossOrigin(maxAge = 3600)

@@ -1,4 +1,4 @@
-package working.talent.bieb.endpoint;
+package nl.workingtalent.bieb.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,15 +8,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import working.talent.bieb.model.Book;
-import working.talent.bieb.repository.LabelService;
+import nl.workingtalent.bieb.model.Book;
+import nl.workingtalent.bieb.repository.BookService;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
-@RequestMapping("/api/labels")
-public class LabelEndpoint {
-
+@RequestMapping("/api/books")
+public class BookEndpoint {
+	
 	@Autowired
-	private LabelService labelService;
+	private BookService bookService;
+	
+	@PostMapping(value="/add")
+	public Book addNewBook(@RequestBody Book book) {
+		return bookService.addNewBook(book);
+	}
+	
 	
 }

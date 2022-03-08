@@ -1,10 +1,10 @@
-package working.talent.bieb.repository;
+package nl.workingtalent.bieb.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import working.talent.bieb.model.Book;
-import working.talent.bieb.model.BookItem;
+import nl.workingtalent.bieb.model.Book;
+import nl.workingtalent.bieb.model.BookItem;
 
 @Service
 public class BookItemService {

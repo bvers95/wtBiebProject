@@ -1,4 +1,4 @@
-package working.talent.bieb.endpoint;
+package nl.workingtalent.bieb.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import working.talent.bieb.repository.AccountService;
+import nl.workingtalent.bieb.repository.LoanEventService;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
-@RequestMapping("/api/accounts")
-public class AccountEndpoint {
+@RequestMapping("/api/loanevents")
+public class LoanEventEndpoint {
 
 	@Autowired
-	private AccountService accountService;
+	private LoanEventService loanEventService;
 	
 	@GetMapping
 	 public void testFunction() {
-        System.out.println("test accounts");
-    }
+       System.out.println("test loan event");
+   }
 	
 }

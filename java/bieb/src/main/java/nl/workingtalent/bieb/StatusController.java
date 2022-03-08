@@ -1,4 +1,4 @@
-package working.talent.bieb;
+package nl.workingtalent.bieb;
 
 import java.util.Date;
 
