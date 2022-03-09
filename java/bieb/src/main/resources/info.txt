@@ -1,0 +1,104 @@
+.Introductie
+Dit document bevat wat notities die we behandeld hebben op 8-03-2022.
+Je moet er bij geweest zijn om het ten volle te kunnen begrijpen! :-)
+
+.Hierarchy van Entities
+Let op dat je maar 1x in de hierarchy een @Id kunt opnemen
+Jullie haddden wellicht twee keer id opgenomen in Book en BookItem?
+(maar das gefixed dus)
+
+Handig is om Long id op te nemen als id ipv bookId of bookItemId of motorId.
+Kortom: neem in je @Entity gewoon altijd een Long id op. of long id.
+En als het anders moet dan kan dat wel hoor, maar waarom zou je.
+Zeker in een greenfield-app. Lekker zo laten.
+
+.Multiple class in Entity hierarchy
+Als je niets doet, dan krijg je cadeau van JPA een Single Table Hierarchy
+Je kunt een @MappedSuperClass constructie gebruiken als je bijvoorbeeld een base class
+hebt/wilt hebben met een id erin en daaronder een Book en BookItem.
+Ter info: goede uitleg van Baeldung: https://www.baeldung.com/hibernate-inheritance
+
+
+.Author name unique
+* @Column(unique = true)
+
+.JSONIgnoreProperties (zie code in Book en Author)
+- Andere oplossingen zijn
+-- Werken met een zg. Assembler die tussen de Service en de Controller zit. En dat is eigenlijk een laag ertussen.
+-- Kan ook met tools als Map Struct, Orika, Model Mapper
+
+.Je zou de url 'api/books' binnen de @RequestMapping annotatie boven de class BookController kunnen zetten. voorkomt dus ook typos
+Zie BookController class.
+
+@ManyToMany
+je zou mappedBy hiervoor kunnen inzetten. gedaan voor gedeelte book en label in jullie project
+
+Verschil uitleggen tussen
+@Component => base
+@Controller => voor een Controller (spring mvc controller)
+
+@RestController => Voor een RestController. Dan is rendering van application/json default gedrag.
+(hadden we die wel doorgenomen, daar ben ik nu niet meer zeker van, nu, bij deze dan!)
+
+@Service (transactie per public method of bovenin MOET je handmatig doen)
+!! Belangrijk is dat je weet dat een transactie wordt gestuurd als je vanuit de RestController in de Service gaat,
+    dan wordt een transactie gestuurd, niet als je binnen de RestController een public method aanroept.
+
+@Repository => voor aangeven dat deze class een Repo is.
+
+.Package naming
+* FQDN. Reverse url zou de base moeten zijn van de package naming e..g
+voor Working Talent met zijn domein workingtalent.nl wordt het dus: nl.workingtalent
+en daarbinnen appname etc.
+package names altijd kleine letter, geen caps.
+
+.source zip downloaden how to?
+Uitleg:https://mkyong.com/java/where-to-download-jdk-source-code/
+Samenvatting:
+* Ga naar: https://www.oracle.com/java/technologies/downloads/
+* Download dan een JDK bijvoorbeeld de Windows.x64_bin.zip file
+* Extra die en dan staat er in de lib folder de src.zip
+* Neem die op in Eclipse
+** Ga bijvoorbeeld naar de java.util.List class
+** Indien je geen src.zip hebt opgenomen zie je bovenin een knop
+** Daarin kun je vervolgens de door jou gedownloade src.zip koppelen in Eclipse.
+
+.Creating multiple environments
+Zie BiebApplicationIt, de verschillende .properties files definiereen feitelijk een environment.
+
+
+.Running the app with an other environment
+$ java -jar ./bieb-0.0.1-SNAPSHOT.jar --spring.profiles.active=integrationtest
+
+.Misc
+. auto executable (wat is nu precies wat die <executable>true</executable> doet??? :-))
+** zet de execute bit aan
+** en doet nog wat meer, zie hier: https://docs.spring.io/spring-boot/docs/current/reference/html/executable-jar.html
+* Java vs Spring Boot, package naming geeft het eigenlijk aan.
+* @Postconstruct, @PrePersist etc. zg. 'callback' methods die worden aangetrapt door de container (tomcat in spring boot)
+ als er zich iets voordoet zoals construct en persist. Zie code in Book.java
+
+.Rest resource nesting
+GET: http://localhost:8080/api/hotels/3/kamers/42/chairs
+POST: http://localhost:8080/api/hotels/3/kamers/42/chairs
+
+@Postmapping("{hotelId}/kamers/{roomId}/chairs"
+// Hotel h = this.hotelService.findById(hotelId);
+// same for Kamer met id roomId
+
+.En daarom: Leesvoer over REST principles
+* Zie uitleg REST principes, afstudeerproject feitelijk in 1993 van Roy Fielding
+** Links : https://restfulapi.net
+*** en wandel daar maar eens goed doorheen. Er zijn nog veeeel meeeer goede uitleg links over REST. Google it!
+
+.Maven
+* Maven lifecycle explained: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+
+.Deploy to Azure.
+NL: https://docs.microsoft.com/nl-nl/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux
+EN: https://docs.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux
+* Update 9-03-2022
+(* Getest en werkt. Althans, je kunt de app daar deployen. Je moet wel een account maken/hebben en das voor 30 dagen vrij... en je krijg iets van $200 credit.)
+
+groet,
+Raymond Loman
