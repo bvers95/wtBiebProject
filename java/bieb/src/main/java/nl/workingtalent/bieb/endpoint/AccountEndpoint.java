@@ -1,12 +1,12 @@
 package nl.workingtalent.bieb.endpoint;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import nl.workingtalent.bieb.model.Account;
 import nl.workingtalent.bieb.repository.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.List;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
@@ -17,8 +17,18 @@ public class AccountEndpoint {
 	private AccountService accountService;
 	
 	@GetMapping
-	 public void testFunction() {
-        System.out.println("test accounts");
+	public List<Account> getAllAccounts() {
+		return accountService.getAllAccounts();
     }
+
+	@GetMapping(value = "{id}")
+	public Optional<Account> getAccountById(@PathVariable Long id) {
+		return accountService.getAccountById(id);
+	}
+
+	@PostMapping
+	public Account createAccount(@RequestBody Account account) {
+		return accountService.createAccount(account);
+	}
 	
 }

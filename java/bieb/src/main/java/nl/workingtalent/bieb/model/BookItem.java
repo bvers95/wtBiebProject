@@ -1,14 +1,8 @@
 package nl.workingtalent.bieb.model;
 
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class BookItem {
@@ -17,14 +11,16 @@ public class BookItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private LocalDate creationDate = LocalDate.now();
+	private LocalDateTime creationDateTime = LocalDateTime.now();
+
+	private LocalDateTime removalDate;
 
 	@OneToMany(mappedBy="bookItem")
 	private List<LoanEvent> loanEvents;
 	
 	@ManyToOne
 	private Book book;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -33,12 +29,20 @@ public class BookItem {
 		this.id = id;
 	}
 
-	public LocalDate getCreationDate() {
-		return creationDate;
+	public LocalDateTime getCreationDateTime() {
+		return creationDateTime;
 	}
 
-	public void setCreationDate(LocalDate creationDate) {
-		this.creationDate = creationDate;
+	public void setCreationDateTime(LocalDateTime creationDateTime) {
+		this.creationDateTime = creationDateTime;
+	}
+
+	public LocalDateTime getRemovalDate() {
+		return removalDate;
+	}
+
+	public void setRemovalDate(LocalDateTime removalDate) {
+		this.removalDate = removalDate;
 	}
 
 	public List<LoanEvent> getLoanEvents() {
@@ -48,5 +52,13 @@ public class BookItem {
 	public void setLoanEvents(List<LoanEvent> loanEvents) {
 		this.loanEvents = loanEvents;
 	}
-	
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
 }

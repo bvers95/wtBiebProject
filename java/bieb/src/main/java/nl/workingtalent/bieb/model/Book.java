@@ -1,13 +1,7 @@
 package nl.workingtalent.bieb.model;
 
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -16,25 +10,27 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(unique=true)
 	private String isbn;
-	
+
 	private String title;
-	
+
 	private String language;
-	
+
 	private String description;
-	
+
+	@Column(unique=true)
 	private String coverUrl;
-	
+
 	private Integer publishYear;
-	
+
 	private String nameAuthor;
-	
+
 	private Boolean isPhysical;
-	
+
 	@ManyToMany
 	private List<Label> labels;
-	
+
 	@OneToMany(mappedBy="book")
 	private List<BookItem> bookItems;
 
@@ -109,5 +105,13 @@ public class Book {
 	public void setLabels(List<Label> labels) {
 		this.labels = labels;
 	}
-	
+
+	public List<BookItem> getBookItems() {
+		return bookItems;
+	}
+
+	public void setBookItems(List<BookItem> bookItems) {
+		this.bookItems = bookItems;
+	}
+
 }

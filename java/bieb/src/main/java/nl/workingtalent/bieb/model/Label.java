@@ -1,12 +1,7 @@
 package nl.workingtalent.bieb.model;
 
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Label {
@@ -14,7 +9,8 @@ public class Label {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(unique=true)
 	private String name;
 	
 	@ManyToMany(mappedBy="labels")
