@@ -10,7 +10,6 @@ WT Software Development track project: full-stack bibliotheek applicatie met Jav
 - Spring Security
 - Spring Data JPA
 - Spring Data JDBC
-- Spring Boot DevTools
 - MySQL Driver
 
 ## Launch
@@ -37,7 +36,7 @@ Return all accounts<br/>
 
 **GET**<br/>
 Return account by `Long id`<br/>
-*http://localhost:8080/api/accounts/* `{id}`
+*http://localhost:8080/api/accounts/id* `{id}`
 
 **POST**<br/>
 Return created account with `{"email": "name@domain.com"}`<br/>
@@ -47,4 +46,20 @@ Return created account with `{"email": "name@domain.com"}`<br/>
 
 ### Book
 
-Soon.
+**GET**<br/>
+Return all books<br/>
+*http://localhost:8080/api/books*
+
+**GET**<br/>
+Return book by `Long id`<br/>
+*http://localhost:8080/api/books/id* `{id}`
+
+**GET**<br/>
+Return book by `String isbn`<br/>
+*http://localhost:8080/api/books/isbn* `{isbn}`
+
+**POST**<br/>
+Return created account with `{"isbn":"123", "title":"Book Title", "language":"eng", "description":"Book description", "coverUrl":"https://", "publishYear":2000, "nameAuthor":"Name", "isPhysical":true}`<br/>
+*http://localhost:8080/api/books*
+
+**Note:** The isbn and coverUrl must be unique else we throw an error. All the fields are required and even though we can pull most information from Open Library, some information might be missing.

@@ -17,12 +17,16 @@ public class Account {
 			nullable = false)
 	private String email;
 
+	@Column(nullable = false)
 	private String password = RandomStringUtils.random(32, true, true);
 
+	@Column(nullable = false)
 	private LocalDateTime creationDateTime = LocalDateTime.now();
 
+	@Column(nullable = false)
 	private AccountStatus status = AccountStatus.ACTIVE;
 
+	@Column(nullable = false)
 	private Boolean isAdmin = false;
 	
 	public enum AccountStatus {

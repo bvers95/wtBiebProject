@@ -21,7 +21,7 @@ public class AccountEndpoint {
 		return accountService.getAllAccounts();
     }
 
-	@GetMapping(value = "{id}")
+	@GetMapping(value = "id/{id}")
 	public Optional<Account> getAccountById(@PathVariable Long id) {
 		return accountService.getAccountById(id);
 	}

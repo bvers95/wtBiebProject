@@ -10,22 +10,30 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique=true)
+	@Column(unique = true,
+			nullable = false)
 	private String isbn;
 
+	@Column(nullable = false)
 	private String title;
 
+	@Column(nullable = false)
 	private String language;
 
+	@Column(nullable = false)
 	private String description;
 
-	@Column(unique=true)
+	@Column(unique = true,
+			nullable = false)
 	private String coverUrl;
 
+	@Column(nullable = false)
 	private Integer publishYear;
 
+	@Column(nullable = false)
 	private String nameAuthor;
 
+	@Column(nullable = false)
 	private Boolean isPhysical;
 
 	@ManyToMany
@@ -33,6 +41,14 @@ public class Book {
 
 	@OneToMany(mappedBy="book")
 	private List<BookItem> bookItems;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getIsbn() {
 		return isbn;
@@ -94,10 +110,10 @@ public class Book {
 		return isPhysical;
 	}
 
-	public void setIsPhysical(Boolean isPhysical) {
-		this.isPhysical = isPhysical;
+	public void setIsPhysical(Boolean physical) {
+		isPhysical = physical;
 	}
-	
+
 	public List<Label> getLabels() {
 		return labels;
 	}
