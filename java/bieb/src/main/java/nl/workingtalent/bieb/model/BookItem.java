@@ -1,16 +1,20 @@
 package nl.workingtalent.bieb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties("book")
 public class BookItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(nullable = false)
 	private LocalDateTime creationDateTime = LocalDateTime.now();
 
 	private LocalDateTime removalDate;

@@ -36,7 +36,7 @@ Return all accounts<br/>
 
 **GET**<br/>
 Return account by `Long id`<br/>
-*http://localhost:8080/api/accounts/id* `{id}`
+*http://localhost:8080/api/accounts/id/* `{id}`
 
 **POST**<br/>
 Return created account with `{"email": "name@domain.com"}`<br/>
@@ -52,14 +52,30 @@ Return all books<br/>
 
 **GET**<br/>
 Return book by `Long id`<br/>
-*http://localhost:8080/api/books/id* `{id}`
+*http://localhost:8080/api/books/id/* `{id}`
 
 **GET**<br/>
 Return book by `String isbn`<br/>
-*http://localhost:8080/api/books/isbn* `{isbn}`
+*http://localhost:8080/api/books/isbn/* `{isbn}`
 
 **POST**<br/>
 Return created account with `{"isbn":"123", "title":"Book Title", "language":"eng", "description":"Book description", "coverUrl":"https://", "publishYear":2000, "nameAuthor":"Name", "isPhysical":true}`<br/>
 *http://localhost:8080/api/books*
 
-**Note:** The isbn and coverUrl must be unique else we throw an error. All the fields are required and even though we can pull most information from Open Library, some information might be missing.
+**Note:** The isbn and coverUrl must be unique else we throw an error. All the fields are required and even though we can pull most information from Open Library, some information might be missing and must be added manually.
+
+### BookItem
+
+**GET**<br/>
+Return all bookitems<br/>
+*http://localhost:8080/api/bookitems*
+
+**GET**<br/>
+Return bookitem by `Long id`<br/>
+*http://localhost:8080/api/bookitems/id/* `{id}`
+
+**POST**<br/>
+Return created bookitem with `{bookId}`<br/>
+*http://localhost:8080/api/bookitems*
+
+**Note:** The body does not require a json format, just the integer of the book to add an item to is enough. If one is interested in both the books and bookitems, you should query the book side instead of the bookitem side.
