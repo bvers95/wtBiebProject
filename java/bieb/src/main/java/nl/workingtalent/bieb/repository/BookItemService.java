@@ -33,10 +33,9 @@ public class BookItemService {
 		BookItem newBookItem = new BookItem();
 		// Check if the book we want to add a bookItem to exists
 		Book expectedBook = bookRepo.findById(bookId).orElseThrow(
-			// Or else we throw an internal server error like the other errors
-			() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR)
+				// Or else we throw an internal server error like the other errors
+				() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR)
 		);
-		System.out.println(expectedBook);
 		newBookItem.setBook(expectedBook);
 		bookItemRepo.save(newBookItem);
 		return newBookItem;

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class LoanEventService {
 
 	@Autowired
-	private LoanEventRepository LoanEventRepo;
+	private LoanEventRepository loanEventRepo;
 	
 }

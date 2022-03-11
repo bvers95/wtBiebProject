@@ -25,10 +25,5 @@ public class BookItemEndpoint {
 	public Optional<BookItem> getBookItemById(@PathVariable Long id) {
 		return bookItemService.getBookItemById(id);
 	}
-
-	@PostMapping
-	public BookItem addBookItem(@RequestBody Long bookId) {
-		return bookItemService.addBookItem(bookId);
-	}
 	
 }
