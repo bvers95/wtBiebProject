@@ -2,7 +2,9 @@ package nl.workingtalent.bieb.repository;
 
 import nl.workingtalent.bieb.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,16 @@ public class BookService {
 	}
 
 	public Book addBook(Book book) {
+		// Some fields are empty
+		if (book.someEmpty()) {
+			// Meaning we throw an internal server error like the other errors
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		// Checks if the isbn we just got is actually unique
+		if (bookRepo.findByIsbn(book.getIsbn()).isPresent()) {
+			// Or else we throw an internal server error like the other errors
+			throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED);
+		}
 		Book newBook = bookRepo.save(book);
 		return newBook;
 	}

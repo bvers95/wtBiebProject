@@ -29,12 +29,16 @@ public class Account {
 	@Column(nullable = false)
 	private Boolean isAdmin = false;
 	
+	@OneToMany(mappedBy="account")
+	private List<LoanEvent> loanEvents;
+
 	public enum AccountStatus {
 		ACTIVE, FROZEN
 	}
-	
-	@OneToMany(mappedBy="account")
-	private List<LoanEvent> loanEvents;
+
+	public boolean someEmpty() {
+		return (this.email == null);
+	}
 
 	public Long getId() {
 		return id;

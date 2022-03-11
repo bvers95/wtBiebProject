@@ -19,6 +19,10 @@ public class Label {
 	@ManyToMany(mappedBy="labels")
 	private List<Book> books;
 
+	public boolean someEmpty() {
+		return (this.name == null);
+	}
+
 	public Long getId() {
 		return id;
 	}

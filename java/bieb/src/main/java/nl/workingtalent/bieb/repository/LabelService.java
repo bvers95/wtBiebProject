@@ -31,6 +31,11 @@ public class LabelService {
 
 	public Label createLabel(Label label) {
 		Label newLabel = new Label();
+		// Some fields are empty
+		if (label.someEmpty()) {
+			// Meaning we throw an internal server error like the other errors
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		// Only use the name from the post
 		newLabel.setName(label.getName());
 		labelRepo.save(newLabel);

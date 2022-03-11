@@ -62,7 +62,7 @@ Return book by `String isbn`<br/>
 Return created account using `{"isbn":"123", "title":"Book Title", "language":"eng", "description":"Book description", "coverUrl":"https://", "publishYear":2000, "nameAuthor":"Name", "isPhysical":true}`<br/>
 *http://localhost:8080/api/books*
 
-**Note:** The isbn and coverUrl must be unique else we throw an error. All the fields are required and even though we can pull most information from Open Library, some information might be missing and must be added manually.
+**Note:** The isbn input must be unique else we throw an error. All the fields are required and even though we can pull most information from Open Library, some information might be missing and must be added manually.
 
 **POST**<br/>
 Return added bookitem for book using `Long id`<br/>

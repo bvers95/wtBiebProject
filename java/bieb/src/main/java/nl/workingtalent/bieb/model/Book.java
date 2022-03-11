@@ -23,8 +23,7 @@ public class Book {
 	@Column(nullable = false)
 	private String description;
 
-	@Column(unique = true,
-			nullable = false)
+	@Column(nullable = false)
 	private String coverUrl;
 
 	@Column(nullable = false)
@@ -41,6 +40,18 @@ public class Book {
 
 	@OneToMany(mappedBy="book")
 	private List<BookItem> bookItems;
+
+	public boolean someEmpty() {
+		return (this.isbn == null
+			|| this.title == null
+			|| this.language == null
+			|| this.description == null
+			|| this.coverUrl == null
+			|| this.publishYear == null
+			|| this.nameAuthor == null
+			|| this.isPhysical == null
+		);
+	}
 
 	public Long getId() {
 		return id;
