@@ -39,7 +39,7 @@ public class BookService {
 		// Checks if the isbn we just got is actually unique
 		if (bookRepo.findByIsbn(book.getIsbn()).isPresent()) {
 			// Or else we throw an internal server error like the other errors
-			throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED);
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		Book newBook = bookRepo.save(book);
 		return newBook;
