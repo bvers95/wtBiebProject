@@ -11,6 +11,7 @@ WT Software Development track project: full-stack bibliotheek applicatie met Jav
 - Spring Data JPA
 - Spring Data JDBC
 - MySQL Driver
+- Spring boot Devtools (gedurende development)
 
 ## Launch
 
@@ -79,12 +80,18 @@ Return assigned label for book `Long id` using `Long id`<br/>
 ### BookItem
 
 **GET**<br/>
-Return all bookitems<br/>
+Return all bookItems<br/>
 *http://localhost:8080/api/bookitems*
 
 **GET**<br/>
-Return bookitem by `Long id`<br/>
+Return bookItem by `Long id`<br/>
 *http://localhost:8080/api/bookitems/id/* `{id}`
+
+**POST**
+Return created bookItem by using `Long bookId`<br/>
+*http://localhost:8080/api/bookitems/* `{bookId}`
+
+**Note:** We can create and add a bookitem to a book by sending an empty post body. Even though we can send all the needed data using a get request, those are cached and could be triggered on accident which is undesirable.
 
 ### Label
 
@@ -101,3 +108,19 @@ Return created label using `{"name": "Nieuwe Tag"}`<br/>
 *http://localhost:8080/api/labels*
 
 **Note:** The name input must be unique else we throw an error.
+
+### LoanEvent
+
+**GET**<br/>
+Return all loanEvents<br/>
+*http://loacalhost:8080/api/loanevents*
+
+**GET**<br/>
+Return loanEvent by `Long id`<br/>
+*http://localhost:8080/api/loanevents/id/* `{id}`
+
+**POST**<br/>
+Return created loanEvent using `Long accountId` and `Long bookItemId`<br/>
+*http://localhost:8080/api/loanevents/* `{accountId}/{bookItemId}`
+
+**Note** Both accountId and bookItemId must already exist in the database, if not the program will throw an error.

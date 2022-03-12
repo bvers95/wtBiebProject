@@ -1,6 +1,7 @@
 package nl.workingtalent.bieb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,6 +20,8 @@ public class BookItem {
 
 	private LocalDateTime removalDate;
 
+	// Reference annotation to avoid infinite loop with ManyToOne relationship => LoanEvent is child of parents Account and BookItem 
+	@JsonManagedReference
 	@OneToMany(mappedBy="bookItem")
 	private List<LoanEvent> loanEvents;
 	

@@ -1,6 +1,9 @@
 package nl.workingtalent.bieb.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,9 +19,12 @@ public class LoanEvent {
 	
 	private LocalDateTime returnDate;
 	
+	// Reference annotation to avoid infinite loop with ManyToOne relationship => LoanEvent is child of parents Account and BookItem 
+	@JsonBackReference
 	@ManyToOne
 	private Account account;
 	
+	@JsonBackReference
 	@ManyToOne
 	private BookItem bookItem;
 
