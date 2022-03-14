@@ -36,6 +36,11 @@ public class LabelService {
 			// Meaning we throw an internal server error like the other errors
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		// Check if the name that is used to create a label is already used
+		if (labelRepo.findByNameIgnoreCase(label.getName()).isPresent()) {
+			// Or else we throw an internal server error like the other errors
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		// Only use the name from the post
 		newLabel.setName(label.getName());
 		labelRepo.save(newLabel);

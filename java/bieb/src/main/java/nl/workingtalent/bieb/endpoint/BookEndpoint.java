@@ -46,7 +46,7 @@ public class BookEndpoint {
 		return bookService.addBook(book);
 	}
 
-	@PostMapping(value = "{id}/item")
+	@PostMapping(value = "{id}/bookitem")
 	public BookItem addBookItem(@PathVariable Long id) {
 		return bookItemService.addBookItem(id);
 	}

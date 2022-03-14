@@ -1,12 +1,14 @@
 package nl.workingtalent.bieb.endpoint;
 
 import nl.workingtalent.bieb.model.Account;
+import nl.workingtalent.bieb.model.LoanEvent;
 import nl.workingtalent.bieb.repository.AccountService;
+import nl.workingtalent.bieb.repository.LoanEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
@@ -15,6 +17,9 @@ public class AccountEndpoint {
 
 	@Autowired
 	private AccountService accountService;
+
+	@Autowired
+	private LoanEventService loanEventService;
 	
 	@GetMapping
 	public List<Account> getAllAccounts() {
@@ -30,6 +35,10 @@ public class AccountEndpoint {
 	public Account createAccount(@RequestBody Account account) {
 		return accountService.createAccount(account);
 	}
-	
-	// Add method to POST/create LoanEvents! Copy-paste from LoanEvent.Endpoint??
+
+	@PostMapping(value = "{accountId}/bookitem/{bookItemId}")
+	public LoanEvent createLoanEvent(@PathVariable Long accountId, @PathVariable Long bookItemId) {
+		return loanEventService.createLoanEvent(bookItemId, accountId);
+	}
+
 }

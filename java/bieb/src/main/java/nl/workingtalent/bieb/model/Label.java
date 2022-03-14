@@ -1,13 +1,12 @@
 package nl.workingtalent.bieb.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@JsonIgnoreProperties("books")
+@JsonIgnoreProperties("books")
 public class Label {
 
 	@Id
@@ -16,8 +15,7 @@ public class Label {
 
 	@Column(unique=true)
 	private String name;
-	
-	@JsonBackReference
+
 	@ManyToMany(mappedBy="labels")
 	private List<Book> books;
 

@@ -2,8 +2,6 @@ package nl.workingtalent.bieb.model;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,9 +28,7 @@ public class Account {
 
 	@Column(nullable = false)
 	private Boolean isAdmin = false;
-	
-	// Reference annotation to avoid infinite loop with ManyToOne relationship => LoanEvent is child of parents Account and BookItem 
-	@JsonManagedReference
+
 	@OneToMany(mappedBy="account")
 	private List<LoanEvent> loanEvents;
 
