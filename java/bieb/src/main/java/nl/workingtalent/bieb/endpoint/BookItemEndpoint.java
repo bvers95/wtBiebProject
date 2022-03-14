@@ -26,10 +26,10 @@ public class BookItemEndpoint {
 		return bookItemService.getBookItemById(id);
 	}
 	
-	@PostMapping(value = "{bookId}")
-	public BookItem addBookItem (@PathVariable Long bookId) {
-		return bookItemService.addBookItem(bookId);
-	}
-	
+//	@PostMapping(value = "{bookId}")
+//	public BookItem addBookItem (@PathVariable Long bookId) {
+//		return bookItemService.addBookItem(bookId);
+//	}
+//	
 	
 }

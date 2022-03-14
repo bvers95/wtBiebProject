@@ -1,6 +1,7 @@
 package nl.workingtalent.bieb.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties("book")
+//@JsonIgnoreProperties("book")
 public class BookItem {
 
 	@Id
@@ -25,6 +26,7 @@ public class BookItem {
 	@OneToMany(mappedBy="bookItem")
 	private List<LoanEvent> loanEvents;
 	
+	@JsonBackReference
 	@ManyToOne
 	private Book book;
 

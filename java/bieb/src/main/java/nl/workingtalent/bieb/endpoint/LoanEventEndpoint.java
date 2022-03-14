@@ -33,8 +33,8 @@ public class LoanEventEndpoint {
 	}
 
 	
-	@PostMapping(value = "{accountId}/{bookItemId}")
-	public LoanEvent createLoanEvent(@PathVariable Long accountId, @PathVariable Long bookItemId) {
-		return loanEventService.createLoanEvent(bookItemId, accountId);
-	}
+//	@PostMapping(value = "{accountId}/{bookItemId}")
+//	public LoanEvent createLoanEvent(@PathVariable Long accountId, @PathVariable Long bookItemId) {
+//		return loanEventService.createLoanEvent(bookItemId, accountId);
+//	}
 }

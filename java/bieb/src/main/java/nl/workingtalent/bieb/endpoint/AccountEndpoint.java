@@ -31,4 +31,5 @@ public class AccountEndpoint {
 		return accountService.createAccount(account);
 	}
 	
+	// Add method to POST/create LoanEvents! Copy-paste from LoanEvent.Endpoint??
 }

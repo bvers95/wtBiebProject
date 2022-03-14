@@ -1,6 +1,9 @@
 package nl.workingtalent.bieb.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Entity
@@ -35,9 +38,11 @@ public class Book {
 	@Column(nullable = false)
 	private Boolean isPhysical;
 
+	@JsonManagedReference
 	@ManyToMany
 	private List<Label> labels;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy="book")
 	private List<BookItem> bookItems;
 
