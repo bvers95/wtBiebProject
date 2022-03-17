@@ -8,8 +8,8 @@ WT Software Development track project: full-stack bibliotheek applicatie met Jav
 
 Voordat we gebruik kunnen maken van onze React App moeten we eerst de LTS versie van [Node.js](https://nodejs.org/) downloaden en installeren. Node.js komt automatisch met een package manager genaamd NPM, deze manager is nodig voor het kunnen managen van de verschillende dependencies en dus in principe de React App.
 
-1. Controleer of Node.js correct is geinstalleerd met `node -v`.
-2. Controleer vervolgens of NPM is geinstaleerd met `npm -v`.
+1. Controleer of Node.js correct is geïnstalleerd met `node -v`.
+2. Controleer vervolgens of NPM is geïnstalleerd met `npm -v`.
 3. Navigeer naar de React App (de map met *package.JSON*).
 4. Om de dependencies te downloaden type je `npm install`.
 
