@@ -1,0 +1,24 @@
+html, body {
+  min-width: 380px;
+  height: 100%;
+  margin: 0;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-item.active, 
+.dropdown-item:active {
+  background-color: #00e600;
+}
+
+.button-wt {
+  background-color: #00e600;
+  border-color: #00e600;
+}
+
+.button-wt:hover {
+  background-color: #00d200;
+  border-color: #00d200;
+}
