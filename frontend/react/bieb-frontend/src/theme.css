@@ -22,3 +22,7 @@ html, body {
   background-color: #00d200;
   border-color: #00d200;
 }
+
+.cover-ratio {
+  --bs-aspect-ratio: 150%;
+}

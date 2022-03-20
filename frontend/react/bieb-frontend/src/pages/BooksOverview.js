@@ -32,28 +32,28 @@ function BooksOverview() {
   if (loading) {
     return (
       <Container className="p-5">
-      <Row>
-        <Col className="text-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-        </Col>
-      </Row>
-    </Container>
+        <Row>
+          <Col className="text-center">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
   if (error) {
     return (
       <Container className="p-5">
-      <Row>
-        <Col>
-          <Alert variant="danger" className="mb-0">
-            Er kan geen connectie gemaakt worden met de database...
-          </Alert>
-        </Col>
-      </Row>
-    </Container>
+        <Row>
+          <Col>
+            <Alert variant="danger" className="mb-0">
+              Er kan geen connectie gemaakt worden met de database...
+            </Alert>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
