@@ -40,7 +40,7 @@ Zorg ervoor dat je Eclipse workspace zich buiten de repository bevindt. Ieder he
 
 ## Database
 
-Zorg ervoor dat de database wt_bieb toegankelijk is.
+Zorg ervoor dat de database wt_bieb toegankelijk is. Daarbij kan je ook de `book-query` gebruiken die te vinden is in `import`. Kopieer de content van deze file en plak deze in de SQL query van `book` middels phpMyAdmin. Doe dit alleen als al de database tables al toegankelijk zijn.
 
 ## Requests
 
