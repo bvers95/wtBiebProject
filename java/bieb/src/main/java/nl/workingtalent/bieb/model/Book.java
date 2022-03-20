@@ -24,9 +24,6 @@ public class Book {
 	private String description;
 
 	@Column(nullable = false)
-	private String coverUrl;
-
-	@Column(nullable = false)
 	private Integer publishYear;
 
 	@Column(nullable = false)
@@ -46,7 +43,6 @@ public class Book {
 			|| this.title == null
 			|| this.language == null
 			|| this.description == null
-			|| this.coverUrl == null
 			|| this.publishYear == null
 			|| this.nameAuthor == null
 			|| this.isPhysical == null
@@ -91,14 +87,6 @@ public class Book {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getCoverUrl() {
-		return coverUrl;
-	}
-
-	public void setCoverUrl(String coverUrl) {
-		this.coverUrl = coverUrl;
 	}
 
 	public Integer getPublishYear() {

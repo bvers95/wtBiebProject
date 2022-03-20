@@ -81,7 +81,7 @@ Return book by `String isbn`<br/>
 *http://localhost:8080/api/books/isbn/* `{isbn}`
 
 **POST**<br/>
-Return created account using `{"isbn":"123", "title":"Book Title", "language":"eng", "description":"Book description", "coverUrl":"https://", "publishYear":2000, "nameAuthor":"Name", "isPhysical":true}`<br/>
+Return created account using `{"isbn":"123", "title":"Book Title", "language":"eng", "description":"Book description", "publishYear":2000, "nameAuthor":"Name", "isPhysical":true}`<br/>
 *http://localhost:8080/api/books*
 
 **Note:** The isbn input must be unique else we throw an error. All the fields are required and even though we can pull most information from Open Library, some information might be missing and must be added manually.

@@ -26,7 +26,6 @@
                 language: formData.get("language"),
                 nameAuthor: formData.get("nameAuthor"),
                 publishYear: Number(formData.get("publishYear")),
-                coverUrl: formData.get("coverUrl"),
                 description: formData.get("description"),
                 isPhysical: isPhysical
             };
@@ -193,9 +192,6 @@
                         </div>
                         <div class="input-group mb-3">
                             <textarea name="description" class="form-control" placeholder="Description" required></textarea>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input name="coverUrl" type="url" class="form-control" placeholder="Cover URL" required>
                         </div>
                         <div class="input-group mb-3">
                             <input name="isPhysical" class="me-2 mt-1" type="checkbox" checked> isPhysical
