@@ -14,7 +14,7 @@ function NavigationMain() {
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
-          </LinkContainer>
+        </LinkContainer>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <DropdownButton title="Menu" id="basic-nav-dropdown" align="end" variant="outline-light"> 
