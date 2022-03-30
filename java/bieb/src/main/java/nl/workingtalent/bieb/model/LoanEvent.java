@@ -1,29 +1,28 @@
 package nl.workingtalent.bieb.model;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@JsonIgnoreProperties({"account", "bookItem"})
 public class LoanEvent {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(nullable = false)
+	private LocalDateTime reserveDate = LocalDateTime.now();
 	
-	private LocalDate reserveDate;
+	private LocalDateTime loanDate;
 	
-	private LocalDate loanDate;
-	
-	private LocalDate returnDate;
-	
+	private LocalDateTime returnDate;
+
 	@ManyToOne
 	private Account account;
-	
+
 	@ManyToOne
 	private BookItem bookItem;
 
@@ -35,27 +34,27 @@ public class LoanEvent {
 		this.id = id;
 	}
 
-	public LocalDate getReserveDate() {
+	public LocalDateTime getReserveDate() {
 		return reserveDate;
 	}
 
-	public void setReserveDate(LocalDate reserveDate) {
+	public void setReserveDate(LocalDateTime reserveDate) {
 		this.reserveDate = reserveDate;
 	}
 
-	public LocalDate getLoanDate() {
+	public LocalDateTime getLoanDate() {
 		return loanDate;
 	}
 
-	public void setLoanDate(LocalDate loanDate) {
+	public void setLoanDate(LocalDateTime loanDate) {
 		this.loanDate = loanDate;
 	}
 
-	public LocalDate getReturnDate() {
+	public LocalDateTime getReturnDate() {
 		return returnDate;
 	}
 
-	public void setReturnDate(LocalDate returnDate) {
+	public void setReturnDate(LocalDateTime returnDate) {
 		this.returnDate = returnDate;
 	}
 
@@ -74,5 +73,5 @@ public class LoanEvent {
 	public void setBookItem(BookItem bookItem) {
 		this.bookItem = bookItem;
 	}
-	
+
 }

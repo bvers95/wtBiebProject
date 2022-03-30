@@ -1,17 +1,12 @@
 package nl.workingtalent.bieb.endpoint;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import nl.workingtalent.bieb.model.Book;
 import nl.workingtalent.bieb.model.BookItem;
 import nl.workingtalent.bieb.repository.BookItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
@@ -20,10 +15,15 @@ public class BookItemEndpoint {
 	
 	@Autowired
 	private BookItemService bookItemService;
-	
-	//@PostMapping(value="/add/{bookId}")
-	//public Book addNewBookItem(@PathVariable Long bookId) {
-		//return bookItemService.addNewBookItem(bookItem);
-	//}
+
+	@GetMapping
+	public List<BookItem> getAllBookItems() {
+		return bookItemService.getAllBookItems();
+	}
+
+	@GetMapping(value = "id/{id}")
+	public Optional<BookItem> getBookItemById(@PathVariable Long id) {
+		return bookItemService.getBookItemById(id);
+	}
 	
 }

@@ -1,13 +1,10 @@
 package nl.workingtalent.bieb.model;
 
-import java.time.LocalDate;
-import java.util.List;
+import org.apache.commons.lang3.RandomStringUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Account {
@@ -15,23 +12,33 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(unique = true,
+			nullable = false)
 	private String email;
-	
-	private String password;
-	
-	private LocalDate creationDate;
-	
-	private AccountStatus status;
-	
-	private Boolean isAdmin;
-	
+
+	@Column(nullable = false)
+	private String password = RandomStringUtils.random(32, true, true);
+
+	@Column(nullable = false)
+	private LocalDateTime creationDateTime = LocalDateTime.now();
+
+	@Column(nullable = false)
+	private AccountStatus status = AccountStatus.ACTIVE;
+
+	@Column(nullable = false)
+	private Boolean isAdmin = false;
+
+	@OneToMany(mappedBy="account")
+	private List<LoanEvent> loanEvents;
+
 	public enum AccountStatus {
 		ACTIVE, FROZEN
 	}
-	
-	@OneToMany(mappedBy="account")
-	private List<LoanEvent> loanEvents;
+
+	public boolean someEmpty() {
+		return (this.email == null);
+	}
 
 	public Long getId() {
 		return id;
@@ -57,12 +64,12 @@ public class Account {
 		this.password = password;
 	}
 
-	public LocalDate getCreationDate() {
-		return creationDate;
+	public LocalDateTime getCreationDateTime() {
+		return creationDateTime;
 	}
 
-	public void setCreationDate(LocalDate creationDate) {
-		this.creationDate = creationDate;
+	public void setCreationDateTime(LocalDateTime creationDateTime) {
+		this.creationDateTime = creationDateTime;
 	}
 
 	public AccountStatus getStatus() {
@@ -73,14 +80,14 @@ public class Account {
 		this.status = status;
 	}
 
-	public Boolean getIsAdmin() {
+	public Boolean getAdmin() {
 		return isAdmin;
 	}
 
-	public void setIsAdmin(Boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setAdmin(Boolean admin) {
+		isAdmin = admin;
 	}
-	
+
 	public List<LoanEvent> getLoanEvents() {
 		return loanEvents;
 	}
@@ -88,5 +95,5 @@ public class Account {
 	public void setLoanEvents(List<LoanEvent> loanEvents) {
 		this.loanEvents = loanEvents;
 	}
-	
+
 }

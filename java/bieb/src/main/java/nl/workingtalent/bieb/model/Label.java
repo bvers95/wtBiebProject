@@ -1,24 +1,27 @@
 package nl.workingtalent.bieb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
 @Entity
+@JsonIgnoreProperties("books")
 public class Label {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(unique=true)
 	private String name;
-	
+
 	@ManyToMany(mappedBy="labels")
 	private List<Book> books;
+
+	public boolean someEmpty() {
+		return (this.name == null);
+	}
 
 	public Long getId() {
 		return id;
